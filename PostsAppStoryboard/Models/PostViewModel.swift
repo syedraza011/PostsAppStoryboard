@@ -9,13 +9,14 @@ import Foundation
 class PostsViewModel {
     
     let service: PostsServiceProtocol
-    init(service: PostsServiceProtocol) {
+    init(service: PostsServiceProtocol = PostsService()) {
         self.service = service
     }
-    @MainActor func getPosts()-> [Post] {
-      
-                return try await service.fetchPostsUsingAsyncAwait()
-       
+    @MainActor func getPosts() async throws-> [Post] {
+        
+        return try await service.fetchPosts()
+        
+        
+        
     }
-    
 }
